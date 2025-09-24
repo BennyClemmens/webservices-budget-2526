@@ -79,3 +79,20 @@ $ rm -rf .git
 
 - `tsconfig.json`
   - `baseurl` optie verwijderd
+
+### Health controller
+
+```bash
+nest generate controller health
+```
+
+```PS
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> nest g controller health
+CREATE src/health/health.controller.ts (105 bytes)
+CREATE src/health/health.controller.spec.ts (510 bytes)
+UPDATE src/app.module.ts (330 bytes)
+```
+
+Keeping the unit test for now...
+
+Replacing code in `src/healt/health.controller.ts` with course code.
