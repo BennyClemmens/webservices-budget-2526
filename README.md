@@ -76,3 +76,6 @@ $ pnpm run start
 benny@FLAB2025 MINGW64 /D/DATA/GIT/WEBSERVICES/webservices-budget-2526/webservices-budget (main)
 $ rm -rf .git
 ```
+
+- `tsconfig.json`
+  - `baseurl` optie verwijderd
