@@ -102,3 +102,12 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 - `src/main.tx`
   - code for global prefix added
   - linting error fixed and some logging tweaks
+
+### Debugger
+
+- `.vscode/launch.json
+  - NestJS debugger added to port 9229
+
+### Adjust project README.md
+
+- `webservices-budget\README.md` filled with project specific info.
