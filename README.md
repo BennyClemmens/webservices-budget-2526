@@ -96,3 +96,9 @@ UPDATE src/app.module.ts (330 bytes)
 Keeping the unit test for now...
 
 Replacing code in `src/healt/health.controller.ts` with course code.
+
+### /api prefix
+
+- `src/main.tx`
+  - code for global prefix added
+  - linting error fixed and some logging tweaks
