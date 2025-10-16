@@ -1,19 +1,23 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
   Param,
   Post,
+  Put,
   Query,
 } from '@nestjs/common';
-import { CreatePlaceRequestDto } from './place.dto';
+import { CreatePlaceRequestDto, UpdatPlaceRequestDto } from './place.dto';
+import { PaginationQuery } from '../common/common.dto';
 
 @Controller('places')
 export class PlaceController {
   @Get()
-  getAllPlaces(@Query('page') page = 1, @Query('limit') limit = 10): string {
+  getAllPlaces(@Query() paginationQuery: PaginationQuery): string {
+    const { page = 1, limit = 10 } = paginationQuery;
     return `this action returns all places. Limit ${limit}, page: ${page}`;
   }
 
@@ -26,5 +30,18 @@ export class PlaceController {
   @HttpCode(HttpStatus.CREATED)
   createPlace(@Body() createPlaceRequestDto: CreatePlaceRequestDto): string {
     return `This action adds a new place for ${createPlaceRequestDto.name}`;
+  }
+
+  @Put(':id')
+  updatePlace(
+    @Param('id') id: string,
+    @Body() updatPlaceRequestDto: UpdatPlaceRequestDto,
+  ): string {
+    return `This action update the place ${updatPlaceRequestDto.name} with is #${id}`;
+  }
+
+  @Delete(':id')
+  deletePlace(@Param('id') id: string): string {
+    return `This action removes the place with id #${id}`;
   }
 }

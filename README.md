@@ -131,3 +131,7 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 - HTTP statuscodes
 - Dto for creating a Place
 - Pagination for the getAll()
+- oefening
+  - put method (met Dto)
+  - delete method
+  - algemene dto voor pagination
