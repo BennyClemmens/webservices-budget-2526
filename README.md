@@ -115,3 +115,9 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 ### Adjust project README.md
 
 - `webservices-budget\README.md` filled with project specific info.
+
+## 3. REST API bouwen
+
+### Datalaag
+
+- Mock data (en interface) toegevoegd in `src/data/mock_data.ts`
