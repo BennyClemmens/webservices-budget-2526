@@ -121,3 +121,8 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 ### Datalaag
 
 - Mock data (en interface) toegevoegd in `src/data/mock_data.ts`
+
+### PlaceController
+
+- controller gegenereerd met cli
+- `GET /api/places` als string
