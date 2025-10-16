@@ -129,3 +129,4 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 - Route parameters: `id`
 - `POST` route
 - HTTP statuscodes
+- Dto for creating a Place
