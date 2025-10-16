@@ -2,6 +2,10 @@
 
 This time round, I'm keeping as close as possible to the instructions.
 
+## 0.Software
+
+- `settings.json` in `.vscode`, but with a lot of tweaks
+
 ## 2. Rest API intro
 
 ### Project opzetten
@@ -35,7 +39,7 @@ nest new --strict webservices-budget
 ```
 
 ```bash
-PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526> nest new --strict webservices-budget --package-manager pnpm                     
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526> nest new --strict webservices-budget --package-manager pnpm
 ✨  We will scaffold your app in a few seconds..
 
 CREATE webservices-budget/.prettierrc (54 bytes)

@@ -1,0 +1,59 @@
+{
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports.ts": "explicit",
+    "source.fixAll.eslint": "always",
+    "source.removeUnusedImports": "explicit"
+  },
+  "editor.cursorBlinking": "expand",
+  "editor.cursorStyle": "line",
+  "editor.cursorWidth": 10,
+  "editor.detectIndentation": false,
+  "editor.fontFamily": "'Fira Code', Menlo, Monaco, Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 20,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.insertSpaces": true,
+  "editor.linkedEditing": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "editor.tabFocusMode": false,
+  "editor.tabSize": 2,
+  "errorLens.delay": 300,
+  "errorLens.enabledDiagnosticLevels": [
+    "error",
+    "warning",
+    "info"
+  ],
+  "errorLens.messageTemplate": "$severity $message $count ($source - $code)",
+  "errorLens.severityText": [
+    "❗️ ",
+    "⚠️ ",
+    "ℹ️ ",
+    "💡 "
+  ],
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "javascript.updateImportsOnFileMove.enabled": "prompt",
+  "typescript.updateImportsOnFileMove.enabled": "prompt",
+  "workbench.colorCustomizations": {
+    "editorCursor.foreground": "#FF0000"
+  },
+  "workbench.colorTheme": "One Dark Pro"
+}
