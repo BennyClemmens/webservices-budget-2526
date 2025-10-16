@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
 
 @Controller('places')
 export class PlaceController {
@@ -10,5 +10,11 @@ export class PlaceController {
   @Get(':id')
   getPlaceById(@Param('id') id: string): string {
     return `This action returns a #${id} place`;
+  }
+
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  createPlace(@Body() body: any): string {
+    return `This action adds a new place for ${body.name}`;
   }
 }

@@ -127,3 +127,5 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 - controller gegenereerd met cli
 - `GET /api/places` als string
 - Route parameters: `id`
+- `POST` route
+- HTTP statuscodes
