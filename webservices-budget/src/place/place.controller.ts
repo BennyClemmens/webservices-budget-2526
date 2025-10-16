@@ -6,14 +6,15 @@ import {
   HttpStatus,
   Param,
   Post,
+  Query,
 } from '@nestjs/common';
 import { CreatePlaceRequestDto } from './place.dto';
 
 @Controller('places')
 export class PlaceController {
   @Get()
-  getAllPlaces(): string {
-    return 'this action returns all places';
+  getAllPlaces(@Query('page') page = 1, @Query('limit') limit = 10): string {
+    return `this action returns all places. Limit ${limit}, page: ${page}`;
   }
 
   @Get(':id')

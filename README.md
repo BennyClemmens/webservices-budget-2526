@@ -130,3 +130,4 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 - `POST` route
 - HTTP statuscodes
 - Dto for creating a Place
+- Pagination for the getAll()
