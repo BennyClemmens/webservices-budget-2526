@@ -135,3 +135,11 @@ Replacing code in `src/healt/health.controller.ts` with course code.
   - put method (met Dto)
   - delete method
   - algemene dto voor pagination
+
+### Services
+
+- generate place service
+- dependency toegevoegd in constructor controller
+- extra and refactored Dto's voor return types
+- service methods for all crud operations
+- using those services in the controller

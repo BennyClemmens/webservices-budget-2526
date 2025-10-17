@@ -10,38 +10,53 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { CreatePlaceRequestDto, UpdatPlaceRequestDto } from './place.dto';
+import {
+  CreatePlaceRequestDto,
+  PlaceListResponseDto,
+  PlaceResponseDto,
+  UpdatePlaceRequestDto,
+} from './place.dto';
 import { PaginationQuery } from '../common/common.dto';
+import { PlaceService } from './place.service';
 
 @Controller('places')
 export class PlaceController {
+  constructor(private readonly placeService: PlaceService) {}
+
   @Get()
-  getAllPlaces(@Query() paginationQuery: PaginationQuery): string {
+  getAllPlaces(
+    @Query() paginationQuery: PaginationQuery,
+  ): PlaceListResponseDto {
     const { page = 1, limit = 10 } = paginationQuery;
-    return `this action returns all places. Limit ${limit}, page: ${page}`;
+    console.log(page, limit);
+
+    return this.placeService.getAll();
   }
 
   @Get(':id')
-  getPlaceById(@Param('id') id: string): string {
-    return `This action returns a #${id} place`;
+  getPlaceById(@Param('id') id: string): PlaceResponseDto | undefined {
+    return this.placeService.getById(Number(id));
   }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  createPlace(@Body() createPlaceRequestDto: CreatePlaceRequestDto): string {
-    return `This action adds a new place for ${createPlaceRequestDto.name}`;
+  createPlace(
+    @Body() createPlaceRequestDto: CreatePlaceRequestDto,
+  ): PlaceResponseDto {
+    return this.placeService.create(createPlaceRequestDto);
   }
 
   @Put(':id')
   updatePlace(
     @Param('id') id: string,
-    @Body() updatPlaceRequestDto: UpdatPlaceRequestDto,
-  ): string {
-    return `This action update the place ${updatPlaceRequestDto.name} with is #${id}`;
+    @Body() updatePlaceRequestDto: UpdatePlaceRequestDto,
+  ): PlaceResponseDto | undefined {
+    return this.placeService.updateById(Number(id), updatePlaceRequestDto);
   }
 
   @Delete(':id')
-  deletePlace(@Param('id') id: string): string {
-    return `This action removes the place with id #${id}`;
+  @HttpCode(HttpStatus.NO_CONTENT)
+  deletePlace(@Param('id') id: string): void {
+    this.placeService.deleteById(Number(id));
   }
 }
