@@ -2,13 +2,24 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ServerConfig } from './config/configuration';
+import { ServerConfig, CorsConfig } from './config/configuration';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = app.get(ConfigService<ServerConfig>);
   const port = config.get<number>('port')!;
+  const cors = config.get<CorsConfig>('cors')!;
+  const { origin, maxAge } = cors;
 
   app.setGlobalPrefix('api');
+
+  app.enableCors({
+    origin: origin,
+    maxAge: maxAge,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  });
 
   await app.listen(port);
 

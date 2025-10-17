@@ -161,3 +161,9 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 - `.env` file aangemaakt
 - ConfigModule toegevoegd in app.module
 - env variables gebruikt in main.ts
+
+### CORS
+
+- added to .env
+- added in configuration
+- used in main.ts
