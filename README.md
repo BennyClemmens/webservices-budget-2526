@@ -153,3 +153,11 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 ### Modules
 
 - refactored controller and service into a module
+
+### Configuration
+
+- pnpm add @nestjs/config
+- pnpm approve-builds
+- `.env` file aangemaakt
+- ConfigModule toegevoegd in app.module
+- env variables gebruikt in main.ts
