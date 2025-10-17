@@ -143,3 +143,9 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 - extra and refactored Dto's voor return types
 - service methods for all crud operations
 - using those services in the controller
+
+### Exception handling
+
+- `NotFoundException` in service toegevoegd
+- as a result: `undefined` niet meer nodig
+- handling for deletion of non existing place neccessary?

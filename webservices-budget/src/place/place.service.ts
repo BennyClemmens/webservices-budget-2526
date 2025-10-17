@@ -44,6 +44,7 @@ export class PlaceService {
   }
 
   deleteById(id: number): void {
+    this.getById(id);
     const index = PLACES.findIndex((item: Place) => item.id === id);
     if (index >= 0) {
       PLACES.splice(index, 1);
