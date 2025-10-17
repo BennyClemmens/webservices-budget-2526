@@ -149,3 +149,7 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 - `NotFoundException` in service toegevoegd
 - as a result: `undefined` niet meer nodig
 - handling for deletion of non existing place neccessary?
+
+### Modules
+
+- refactored controller and service into a module
