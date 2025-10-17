@@ -34,7 +34,7 @@ export class PlaceController {
   }
 
   @Get(':id')
-  getPlaceById(@Param('id') id: string): PlaceResponseDto | undefined {
+  getPlaceById(@Param('id') id: string): PlaceResponseDto {
     return this.placeService.getById(Number(id));
   }
 
@@ -50,7 +50,7 @@ export class PlaceController {
   updatePlace(
     @Param('id') id: string,
     @Body() updatePlaceRequestDto: UpdatePlaceRequestDto,
-  ): PlaceResponseDto | undefined {
+  ): PlaceResponseDto {
     return this.placeService.updateById(Number(id), updatePlaceRequestDto);
   }
 

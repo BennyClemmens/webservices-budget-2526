@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Place, PLACES } from '../data/mock_data';
 import {
   CreatePlaceRequestDto,
@@ -13,8 +13,12 @@ export class PlaceService {
     return { items: PLACES };
   }
 
-  getById(id: number): PlaceResponseDto | undefined {
-    return PLACES.find((item: Place) => item.id === id);
+  getById(id: number): PlaceResponseDto {
+    const place = PLACES.find((item: Place) => item.id === id);
+    if (!place) {
+      throw new NotFoundException(`No place with this id exists`);
+    }
+    return place;
   }
 
   create({ name, rating }: CreatePlaceRequestDto): PlaceResponseDto {
@@ -30,14 +34,13 @@ export class PlaceService {
   updateById(
     id: number,
     { name, rating }: UpdatePlaceRequestDto,
-  ): PlaceResponseDto | undefined {
-    const index = PLACES.findIndex((item: Place) => item.id === id);
-    if (index === -1) return undefined;
-
-    const updatedPlace = { ...PLACES[index], name, rating };
-    PLACES[index] = updatedPlace;
-
-    return updatedPlace;
+  ): PlaceResponseDto {
+    let existingplace = this.getById(id);
+    if (existingplace) {
+      existingplace = { id: id, name, rating };
+    }
+    PLACES[PLACES.findIndex((item: Place) => item.id === id)] = existingplace;
+    return existingplace;
   }
 
   deleteById(id: number): void {
