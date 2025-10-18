@@ -167,3 +167,10 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 - added to .env
 - added in configuration
 - used in main.ts
+
+## 4. Datalaag en places
+
+### MySQL in docker
+
+- `docker-compose.yml` angemaakt maar port 3306  mapped naar localhost 3307
+- runt in docker desktop wet WSL2 als provider, kan connecteren via Workbench
