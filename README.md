@@ -174,3 +174,13 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 
 - `docker-compose.yml` angemaakt maar port 3306  mapped naar localhost 3307
 - runt in docker desktop wet WSL2 als provider, kan connecteren via Workbench
+
+### Installatie drizzle
+
+- pnpm add drizzle-orm mysql2
+- pnpm add -D drizzle-kit
+- pnpm approve-builds
+- variabele in .env
+- READMe aangepast
+- drizzle.config.ts aangemaakt
+- config/configuration.ts aangevuld

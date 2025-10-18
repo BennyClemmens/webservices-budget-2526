@@ -21,6 +21,7 @@ NODE_ENV=development
 PORT=3000
 CORS_ORIGIN=["http://localhost:5173"]
 CORS_MAX_AGE=10800
+DATABASE_URL=mysql://devusr:devpwd@localhost:3307/budget
 ```
 
 You can configure another PORT if this one is not convenient on your system.
