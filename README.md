@@ -296,3 +296,35 @@ No config path provided, using default 'drizzle.config.ts'
 Reading config file 'D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\drizzle.config.ts'
 [✓] migrations applied successfully!
 ```
+
+### Seeds aanvullen
+
+- resetDatabase aangevuld
+- seeds aangevuld
+- seed uitgevoerd
+
+```bash
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm db:seed
+
+> webservices-budget@0.0.1 db:seed D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget
+> env-cmd tsx src/drizzle/seed.ts
+
+🌱 Starting database seeding...
+
+🗑️ Resetting database...
+✅ Database reset completed
+
+👥 Seeding users...
+✅ Users seeded successfully
+
+📍 Seeding places...
+✅ Places seeded successfully
+
+💰 Seeding transactions...
+✅ Transactions seeded successfully
+
+💰 Seeding UserFavoritePlaces...
+✅ UserFavoritePlaces seeded successfully
+
+🎉 Database seeding completed successfully!
+```
