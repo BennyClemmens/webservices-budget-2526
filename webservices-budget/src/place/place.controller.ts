@@ -24,11 +24,11 @@ export class PlaceController {
   constructor(private readonly placeService: PlaceService) {}
 
   @Get()
-  getAllPlaces(
+  async getAllPlaces(
     @Query() paginationQuery: PaginationQuery,
-  ): PlaceListResponseDto {
+  ): Promise<PlaceListResponseDto> {
     const { page = 1, limit = 10 } = paginationQuery;
-    console.log(page, limit);
+    console.log(`TODO: implement pagination: page: $${page}, limit: ${limit}`);
 
     return this.placeService.getAll();
   }

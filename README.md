@@ -247,3 +247,10 @@ pnpm db:seed
 
 🎉 Database seeding completed successfully!
 ```
+
+### use Drizzle in Services
+
+- DrizzleModule imported in PlacesModule
+- DrizzleProvider injected in PlaceService (constructor)
+- getall method: async, await, Promise
+- getall service: async, Promise

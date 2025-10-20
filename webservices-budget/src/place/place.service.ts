@@ -6,11 +6,21 @@ import {
   PlaceListResponseDto,
   PlaceResponseDto,
 } from './place.dto';
+import {
+  type DatabaseProvider,
+  InjectDrizzle,
+} from '../drizzle/drizzle.provider';
 
 @Injectable()
 export class PlaceService {
-  getAll(): PlaceListResponseDto {
-    return { items: PLACES };
+  constructor(
+    @InjectDrizzle()
+    private readonly db: DatabaseProvider,
+  ) {}
+
+  async getAll(): Promise<PlaceListResponseDto> {
+    const items = await this.db.query.places.findMany();
+    return { items };
   }
 
   getById(id: number): PlaceResponseDto {
