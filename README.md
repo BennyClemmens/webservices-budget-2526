@@ -335,7 +335,7 @@ PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm db:s
 - bijpassende dto's aangemaakt
 - return types in services en controller aangepast
 
-### TransactionService
+### TransactionController
 
 - module & controller aangemaakt
 
@@ -350,3 +350,14 @@ UPDATE src/transaction/transaction.module.ts (198 bytes)
 
 - dto's aangemaakt
 - non implemented routes in the transaction controller
+
+### TransactionService
+
+```bash
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm nest g service transaction --no-spec
+CREATE src/transaction/transaction.service.ts (99 bytes)
+UPDATE src/transaction/transaction.module.ts (298 bytes)
+```
+
+- nieuwe service TransactionService die enkel errors gooit
+- imported and exported in module
