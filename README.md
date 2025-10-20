@@ -224,3 +224,26 @@ Reading config file 'D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices
 ```
 
 - scripts added in package.json
+
+### Seeds
+
+- seed script: srs/drizzle/seed.ts
+- added to scripts in package.json
+- dev dependencies: env-cmd & tsx
+
+```bash
+pnpm db:seed
+
+> webservices-budget@0.0.1 db:seed D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget
+> env-cmd tsx src/drizzle/seed.ts
+
+🌱 Starting database seeding...
+
+🗑️ Resetting database...
+✅ Database reset completed
+
+📍 Seeding places...
+✅ Places seeded successfully
+
+🎉 Database seeding completed successfully!
+```
