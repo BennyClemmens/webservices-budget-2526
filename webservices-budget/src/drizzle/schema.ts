@@ -1,3 +1,4 @@
+import { relations } from 'drizzle-orm';
 import {
   int,
   mysqlTable,
@@ -46,4 +47,34 @@ export const userFavoritePlaces = mysqlTable(
       .notNull(),
   },
   (table) => [primaryKey({ columns: [table.userId, table.placeId] })],
+);
+
+export const placesRelations = relations(places, ({ many }) => ({
+  transactions: many(transactions),
+}));
+
+export const usersRelations = relations(users, ({ many }) => ({
+  transactions: many(transactions),
+}));
+
+export const transactionsRelations = relations(transactions, ({ one }) => ({
+  place: one(places, {
+    fields: [transactions.placeId],
+    references: [places.id],
+  }),
+  user: one(users, {
+    fields: [transactions.userId],
+    references: [users.id],
+  }),
+}));
+
+export const userFavoritePlacesRelations = relations(
+  userFavoritePlaces,
+  ({ one }) => ({
+    // Relatie in de richting van user niet gebruikt
+    place: one(places, {
+      fields: [userFavoritePlaces.placeId],
+      references: [places.id],
+    }),
+  }),
 );

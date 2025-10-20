@@ -265,3 +265,34 @@ pnpm db:seed
 
 - schema.ts updated met nieuwe tabellen
 - foreign keys toegevoegd
+- realties
+
+### Migratie maken en uitvoeren
+
+```bash
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm db:generate
+
+> webservices-budget@0.0.1 db:generate D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget
+> drizzle-kit generate
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\drizzle.config.ts'
+Reading schema files:
+D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\src\drizzle\schema.ts
+
+4 tables
+places 3 columns 1 indexes 0 fks
+transactions 5 columns 0 indexes 2 fks
+user_favorite_places 2 columns 0 indexes 2 fks
+users 2 columns 0 indexes 0 fks
+
+[✓] Your SQL migration file ➜ migrations\0001_loving_talos.sql 🚀
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm db:migrate
+
+> webservices-budget@0.0.1 db:migrate D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget
+> drizzle-kit migrate
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\drizzle.config.ts'
+[✓] migrations applied successfully!
+```
