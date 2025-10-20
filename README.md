@@ -194,3 +194,7 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 
 - src/drizzle/schema.ts
 - schema imported in provider
+
+### Connectie afsluiten
+
+- lifecycle event voor sluiten connectie
