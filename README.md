@@ -258,3 +258,9 @@ pnpm db:seed
 - create
 - update
 - delete
+
+## 5. Relaties
+
+### Schema aanvullen cfr. ERD
+
+- schema.ts updated met nieuwe tabellen

@@ -4,6 +4,8 @@ import {
   varchar,
   uniqueIndex,
   tinyint,
+  datetime,
+  primaryKey,
 } from 'drizzle-orm/mysql-core';
 
 export const places = mysqlTable(
@@ -14,4 +16,32 @@ export const places = mysqlTable(
     rating: tinyint('rating', { unsigned: true }).notNull(),
   },
   (table) => [uniqueIndex('idx_place_name_unique').on(table.name)],
+);
+
+export const users = mysqlTable('users', {
+  id: int('id', { unsigned: true }).primaryKey().autoincrement(),
+  name: varchar('name', { length: 255 }).notNull(),
+});
+
+export const transactions = mysqlTable('transactions', {
+  id: int('id', { unsigned: true }).primaryKey().autoincrement(),
+  amount: int('amount').notNull(),
+  date: datetime('date').notNull(),
+  userId: int('user_id', { unsigned: true }).notNull(),
+  placeId: int('place_id', { unsigned: true }).notNull(),
+  userId: int('user_id', { unsigned: true })
+    .references(() => users.id, { onDelete: 'cascade' }) // 👈
+    .notNull(),
+  placeId: int('place_id', { unsigned: true })
+    .references(() => places.id, { onDelete: 'no action' }) // 👈
+    .notNull(),
+});
+
+export const userFavoritePlaces = mysqlTable(
+  'user_favorite_places',
+  {
+    userId: int('user_id', { unsigned: true }).notNull(),
+    placeId: int('place_id', { unsigned: true }).notNull(),
+  },
+  (table) => [primaryKey({ columns: [table.userId, table.placeId] })],
 );
