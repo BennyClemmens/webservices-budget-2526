@@ -334,3 +334,19 @@ PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm db:s
 - aangepast om relaties te kunnen gebruiken
 - bijpassende dto's aangemaakt
 - return types in services en controller aangepast
+
+### TransactionService
+
+- module & controller aangemaakt
+
+```bash
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm nest g module transaction
+CREATE src/transaction/transaction.module.ts (92 bytes)
+UPDATE src/app.module.ts (757 bytes)
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm nest g controller transaction --no-spec
+CREATE src/transaction/transaction.controller.ts (115 bytes)
+UPDATE src/transaction/transaction.module.ts (198 bytes)
+```
+
+- dto's aangemaakt
+- non implemented routes in the transaction controller
