@@ -254,3 +254,7 @@ pnpm db:seed
 - DrizzleProvider injected in PlaceService (constructor)
 - getall method: async, await, Promise
 - getall service: async, Promise
+- getbyid
+- create
+- update
+- delete

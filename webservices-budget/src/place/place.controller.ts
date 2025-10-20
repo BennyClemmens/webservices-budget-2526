@@ -34,29 +34,29 @@ export class PlaceController {
   }
 
   @Get(':id')
-  getPlaceById(@Param('id') id: string): PlaceResponseDto {
+  async getPlaceById(@Param('id') id: string): Promise<PlaceResponseDto> {
     return this.placeService.getById(Number(id));
   }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  createPlace(
+  async createPlace(
     @Body() createPlaceRequestDto: CreatePlaceRequestDto,
-  ): PlaceResponseDto {
+  ): Promise<PlaceResponseDto> {
     return this.placeService.create(createPlaceRequestDto);
   }
 
   @Put(':id')
-  updatePlace(
+  async updatePlace(
     @Param('id') id: string,
     @Body() updatePlaceRequestDto: UpdatePlaceRequestDto,
-  ): PlaceResponseDto {
+  ): Promise<PlaceResponseDto> {
     return this.placeService.updateById(Number(id), updatePlaceRequestDto);
   }
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  deletePlace(@Param('id') id: string): void {
-    this.placeService.deleteById(Number(id));
+  async deletePlace(@Param('id') id: string): Promise<void> {
+    await this.placeService.deleteById(Number(id)); // await redundant...
   }
 }
