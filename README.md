@@ -361,3 +361,11 @@ UPDATE src/transaction/transaction.module.ts (298 bytes)
 
 - nieuwe service TransactionService die enkel errors gooit
 - imported and exported in module
+
+### Implementatie TransactionService
+
+- getAll
+  - db in constructor
+  - method in TransactionService
+  - import Drizzle in Module
+  - import Service in Controller

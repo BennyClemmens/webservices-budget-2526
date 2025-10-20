@@ -5,11 +5,32 @@ import {
   CreateTransactionRequestDto,
   UpdateTransactionRequestDto,
 } from './transaction.dto';
+import {
+  type DatabaseProvider,
+  InjectDrizzle,
+} from '../drizzle/drizzle.provider';
 
 @Injectable()
 export class TransactionService {
+  constructor(
+    @InjectDrizzle()
+    private readonly db: DatabaseProvider,
+  ) {}
+
   async getAll(): Promise<TransactionListResponseDto> {
-    throw new Error('Not implemented');
+    const items = await this.db.query.transactions.findMany({
+      columns: {
+        id: true,
+        amount: true,
+        date: true,
+      },
+      with: {
+        place: true,
+        user: true,
+      },
+    });
+
+    return { items };
   }
 
   async getById(id: number): Promise<TransactionResponseDto> {
