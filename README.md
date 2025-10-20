@@ -198,3 +198,29 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 ### Connectie afsluiten
 
 - lifecycle event voor sluiten connectie
+
+### Migrations
+
+- pnpm drizzle-kit generate
+
+```bash
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\drizzle.config.ts'
+Reading schema files:
+D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\src\drizzle\schema.ts
+
+1 tables
+places 3 columns 1 indexes 0 fks
+
+[✓] Your SQL migration file ➜ migrations\0000_melted_jazinda.sql 🚀
+```
+
+- pnpm drizzle-kit migrate (after starting docker desktop/docker)
+
+```bash
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\drizzle.config.ts'
+[✓] migrations applied successfully!
+```
+
+- scripts added in package.json
