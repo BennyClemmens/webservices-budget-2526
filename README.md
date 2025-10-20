@@ -374,3 +374,18 @@ UPDATE src/transaction/transaction.module.ts (298 bytes)
   - create
   - delete
   - update
+
+### Favorite places
+
+- getFavoritePlacesByUserId in place.service
+- hangt onder user dus:
+  - aanmaken modules, controller, route
+
+```bash
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm nest g module user
+CREATE src/user/user.module.ts (85 bytes)
+UPDATE src/app.module.ts (822 bytes)
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm nest g controller user --no-spec
+CREATE src/user/user.controller.ts (101 bytes)
+UPDATE src/user/user.module.ts (170 bytes)
+```
