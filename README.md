@@ -189,3 +189,8 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 
 - nest generate module drizzle
 - drizzle.provider.ts
+
+### Databankschema definiëren
+
+- src/drizzle/schema.ts
+- schema imported in provider
