@@ -264,3 +264,4 @@ pnpm db:seed
 ### Schema aanvullen cfr. ERD
 
 - schema.ts updated met nieuwe tabellen
+- foreign keys toegevoegd
