@@ -369,3 +369,8 @@ UPDATE src/transaction/transaction.module.ts (298 bytes)
   - method in TransactionService
   - import Drizzle in Module
   - import Service in Controller
+- andere crud operaties
+  - getbyid
+  - create
+  - delete
+  - update

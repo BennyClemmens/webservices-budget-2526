@@ -30,14 +30,14 @@ export class TransactionController {
   async createTransaction(
     @Body() createTransactionDto: CreateTransactionRequestDto,
   ): Promise<TransactionResponseDto> {
-    throw new Error('Not implemented');
+    return this.transactionService.create(createTransactionDto);
   }
 
   @Get(':id')
   async getTransactionById(
     @Param('id') id: string,
   ): Promise<TransactionResponseDto> {
-    throw new Error('Not implemented');
+    return this.transactionService.getById(Number(id));
   }
 
   @Put(':id')
@@ -45,12 +45,12 @@ export class TransactionController {
     @Param('id') id: string,
     @Body() updateTransactionDto: UpdateTransactionRequestDto,
   ): Promise<TransactionResponseDto> {
-    throw new Error('Not implemented');
+    return this.transactionService.updateById(Number(id), updateTransactionDto);
   }
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   async deleteTransaction(@Param('id') id: string): Promise<void> {
-    throw new Error('Not implemented');
+    return this.transactionService.deleteById(Number(id));
   }
 }
