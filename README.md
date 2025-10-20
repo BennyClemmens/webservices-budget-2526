@@ -184,3 +184,8 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 - READMe aangepast
 - drizzle.config.ts aangemaakt
 - config/configuration.ts aangevuld
+
+### Drizzle connectie als provider
+
+- nest generate module drizzle
+- drizzle.provider.ts
