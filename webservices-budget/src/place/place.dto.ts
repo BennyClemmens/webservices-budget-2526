@@ -1,4 +1,4 @@
-// src/place/plac.dto.ts
+import { TransactionResponseDto } from '../transaction/transaction.dto';
 class PlaceDto {
   name: string;
   rating: number;
@@ -14,4 +14,8 @@ export class PlaceResponseDto extends PlaceDto {
 
 export class PlaceListResponseDto {
   items: PlaceResponseDto[];
+}
+
+export class PlaceDetailResponseDto extends PlaceResponseDto {
+  transactions: TransactionResponseDto[];
 }

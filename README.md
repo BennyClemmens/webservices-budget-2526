@@ -328,3 +328,9 @@ PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm db:s
 
 🎉 Database seeding completed successfully!
 ```
+
+### PlaceService - getById
+
+- aangepast om relaties te kunnen gebruiken
+- bijpassende dto's aangemaakt
+- return types in services en controller aangepast

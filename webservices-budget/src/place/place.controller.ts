@@ -13,7 +13,7 @@ import {
 import {
   CreatePlaceRequestDto,
   PlaceListResponseDto,
-  PlaceResponseDto,
+  PlaceDetailResponseDto,
   UpdatePlaceRequestDto,
 } from './place.dto';
 import { PaginationQuery } from '../common/common.dto';
@@ -34,7 +34,7 @@ export class PlaceController {
   }
 
   @Get(':id')
-  async getPlaceById(@Param('id') id: string): Promise<PlaceResponseDto> {
+  async getPlaceById(@Param('id') id: string): Promise<PlaceDetailResponseDto> {
     return this.placeService.getById(Number(id));
   }
 
@@ -42,7 +42,7 @@ export class PlaceController {
   @HttpCode(HttpStatus.CREATED)
   async createPlace(
     @Body() createPlaceRequestDto: CreatePlaceRequestDto,
-  ): Promise<PlaceResponseDto> {
+  ): Promise<PlaceDetailResponseDto> {
     return this.placeService.create(createPlaceRequestDto);
   }
 
@@ -50,7 +50,7 @@ export class PlaceController {
   async updatePlace(
     @Param('id') id: string,
     @Body() updatePlaceRequestDto: UpdatePlaceRequestDto,
-  ): Promise<PlaceResponseDto> {
+  ): Promise<PlaceDetailResponseDto> {
     return this.placeService.updateById(Number(id), updatePlaceRequestDto);
   }
 
