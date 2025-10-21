@@ -389,3 +389,10 @@ PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm nest
 CREATE src/user/user.controller.ts (101 bytes)
 UPDATE src/user/user.module.ts (170 bytes)
 ```
+
+### UserService
+
+- overige enpoints in UserController
+- userService met ethoden
+- userModule
+- dto's
