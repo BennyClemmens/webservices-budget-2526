@@ -172,8 +172,10 @@ Replacing code in `src/healt/health.controller.ts` with course code.
 
 ### MySQL in docker
 
-- `docker-compose.yml` angemaakt maar port 3306  mapped naar localhost 3307
-- runt in docker desktop wet WSL2 als provider, kan connecteren via Workbench
+- `docker-compose.yml` aangemaakt maar port 3306 mapped naar localhost 3307
+- runt in docker desktop met WSL2 als provider, kan connecteren via Workbench
+- phpmydamin added op locazlhost:8080
+- secrets moved naar .env
 
 ### Installatie drizzle
 
@@ -373,7 +375,7 @@ UPDATE src/transaction/transaction.module.ts (298 bytes)
   - getbyid
   - create
   - delete
-  - update
+  - update, nu ook met andere userId mogelijk
 
 ### Favorite places
 

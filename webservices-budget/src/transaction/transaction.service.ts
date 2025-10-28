@@ -9,7 +9,7 @@ import {
   type DatabaseProvider,
   InjectDrizzle,
 } from '../drizzle/drizzle.provider';
-import { eq, and } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { transactions } from '../drizzle/schema';
 
 @Injectable()
@@ -72,16 +72,17 @@ export class TransactionService {
 
   async updateById(
     id: number,
-    { amount, date, placeId, userId }: UpdateTransactionRequestDto,
+    { amount, date, userId, placeId }: UpdateTransactionRequestDto,
   ): Promise<TransactionResponseDto> {
     await this.db
       .update(transactions)
       .set({
         amount,
         date: new Date(date),
+        userId,
         placeId,
       })
-      .where(and(eq(transactions.id, id), eq(transactions.userId, userId)));
+      .where(eq(transactions.id, id));
 
     return this.getById(id);
   }

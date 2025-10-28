@@ -15,10 +15,10 @@ export class TransactionResponseDto {
 }
 
 export class CreateTransactionRequestDto {
-  placeId: number;
-  userId: number;
   amount: number;
   date: Date;
+  userId: number;
+  placeId: number;
 }
 
 export class UpdateTransactionRequestDto extends CreateTransactionRequestDto {}
