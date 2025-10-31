@@ -411,3 +411,7 @@ UPDATE src/user/user.module.ts (170 bytes)
 - `pnpm i class-validator class-transformer`
 - decorators gebruikt in `CreatePlaceRequestDto`
 - `ValidationPipe` imported in `main.jsx`
+
+### Transformeren van payloads naar DTO's
+
+- mbv `transform: true`
