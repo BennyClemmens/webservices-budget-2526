@@ -9,6 +9,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { ServerConfig, CorsConfig, LogConfig } from './config/configuration';
 import CustomLogger from './core/CustomLogger';
+import { HttpExceptionFilter } from './lib/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -42,6 +43,8 @@ async function bootstrap() {
       },
     }),
   );
+
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   app.useLogger(
     new CustomLogger({

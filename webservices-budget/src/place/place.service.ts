@@ -26,20 +26,26 @@ export class PlaceService {
   }
 
   async getById(id: number): Promise<PlaceDetailResponseDto> {
-    const place = await this.db.query.places.findFirst({
-      where: eq(places.id, id),
-      with: {
-        transactions: {
-          with: {
-            user: true,
-            place: true,
+    const place: PlaceDetailResponseDto | undefined =
+      await this.db.query.places.findFirst({
+        where: eq(places.id, id),
+        with: {
+          transactions: {
+            with: {
+              user: true,
+              place: true,
+            },
           },
         },
-      },
-    });
+      });
 
     if (!place) {
-      throw new NotFoundException(`No place with this id exists`);
+      throw new NotFoundException({
+        message: 'Place not found',
+        details: {
+          id: id,
+        },
+      });
     }
     return place;
   }

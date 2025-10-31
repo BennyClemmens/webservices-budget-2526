@@ -435,3 +435,7 @@ UPDATE src/user/user.module.ts (170 bytes)
 - CustomLogger.ts in core map
 - geïmporteerd in main.ts
 - via config voor verschillende levels
+
+### Foutafhandeling
+
+- exceptionfilter met custom message
