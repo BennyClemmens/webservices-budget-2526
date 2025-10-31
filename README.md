@@ -415,3 +415,8 @@ UPDATE src/user/user.module.ts (170 bytes)
 ### Transformeren van payloads naar DTO's
 
 - mbv `transform: true`
+
+### Primitieve types transformeren
+
+- id: number
+- vraag of dit correct wordt opgevangen als een string wordt opgegeven (wat ParseInt wel deed)
