@@ -1,6 +1,22 @@
 import { TransactionResponseDto } from '../transaction/transaction.dto';
+import {
+  IsString,
+  IsNotEmpty,
+  MaxLength,
+  Min,
+  Max,
+  IsInt,
+} from 'class-validator';
+
 class PlaceDto {
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(255)
   name: string;
+
+  @IsInt()
+  @Min(1)
+  @Max(5)
   rating: number;
 }
 
