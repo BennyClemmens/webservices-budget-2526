@@ -58,8 +58,8 @@ export class UserController {
 
   @Get('/:id/favoriteplaces')
   async getFavoritePlaces(
-    @Param('id') id: string,
+    @Param('id') id: number,
   ): Promise<PlaceResponseDto[]> {
-    return await this.placeService.getFavoritePlacesByUserId(Number(id));
+    return await this.placeService.getFavoritePlacesByUserId(id);
   }
 }

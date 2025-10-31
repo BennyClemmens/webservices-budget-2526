@@ -8,7 +8,6 @@ import {
   Param,
   Post,
   Put,
-  Query,
 } from '@nestjs/common';
 import {
   CreatePlaceRequestDto,
@@ -16,7 +15,6 @@ import {
   PlaceDetailResponseDto,
   UpdatePlaceRequestDto,
 } from './place.dto';
-import { PaginationQuery } from '../common/common.dto';
 import { PlaceService } from './place.service';
 
 @Controller('places')
@@ -24,12 +22,11 @@ export class PlaceController {
   constructor(private readonly placeService: PlaceService) {}
 
   @Get()
-  async getAllPlaces(
-    @Query() paginationQuery: PaginationQuery,
-  ): Promise<PlaceListResponseDto> {
-    const { page = 1, limit = 10 } = paginationQuery;
-    console.log(`TODO: implement pagination: page: $${page}, limit: ${limit}`);
-
+  // async getAllPlaces(
+  //   @Query() paginationQuery: PaginationQuery,
+  // ): Promise<PlaceListResponseDto> {
+  async getAllPlaces(): Promise<PlaceListResponseDto> {
+    //const { page, limit } = paginationQuery;
     return this.placeService.getAll();
   }
 

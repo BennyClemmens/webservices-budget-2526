@@ -1,5 +1,16 @@
-// src/common/commont.dto.ts
+import { Type } from 'class-transformer';
+import { IsInt, Min, IsOptional } from 'class-validator';
+
 export class PaginationQuery {
-  page?: string; // too soon for number = 1;
-  limit?: string; // too soon for number = 10;
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  page?: number = 1;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  limit?: number = 100;
 }

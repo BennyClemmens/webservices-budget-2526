@@ -420,3 +420,12 @@ UPDATE src/user/user.module.ts (170 bytes)
 
 - id: number
 - vraag of dit correct wordt opgevangen als een string wordt opgegeven (wat ParseInt wel deed)
+
+### Formatteren van validatie fouten
+
+- eigen exceptionFactory meegegeven aan de instantie van de ValidationPipe in main.tsx
+
+### Oefening invoervalidatie
+
+- user en transaction dtos
+- pagination dto
