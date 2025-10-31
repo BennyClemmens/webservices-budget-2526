@@ -9,6 +9,7 @@ import {
   Post,
   Put,
   Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import {
   CreatePlaceRequestDto,
@@ -34,8 +35,10 @@ export class PlaceController {
   }
 
   @Get(':id')
-  async getPlaceById(@Param('id') id: string): Promise<PlaceDetailResponseDto> {
-    return this.placeService.getById(Number(id));
+  async getPlaceById(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<PlaceDetailResponseDto> {
+    return this.placeService.getById(id);
   }
 
   @Post()
