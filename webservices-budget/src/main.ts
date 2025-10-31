@@ -7,7 +7,8 @@ import {
   Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ServerConfig, CorsConfig } from './config/configuration';
+import { ServerConfig, CorsConfig, LogConfig } from './config/configuration';
+import CustomLogger from './core/CustomLogger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,6 +16,8 @@ async function bootstrap() {
   const port = config.get<number>('port')!;
   const cors = config.get<CorsConfig>('cors')!;
   const { origin, maxAge } = cors;
+  const log = config.get<LogConfig>('log')!;
+  const { levels } = log;
 
   app.setGlobalPrefix('api');
 
@@ -37,6 +40,12 @@ async function bootstrap() {
           details: { body: formattedErrors },
         });
       },
+    }),
+  );
+
+  app.useLogger(
+    new CustomLogger({
+      logLevels: levels,
     }),
   );
 

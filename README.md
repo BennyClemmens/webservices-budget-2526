@@ -429,3 +429,9 @@ UPDATE src/user/user.module.ts (170 bytes)
 
 - user en transaction dtos
 - pagination dto
+
+### Logging
+
+- CustomLogger.ts in core map
+- geïmporteerd in main.ts
+- via config voor verschillende levels
