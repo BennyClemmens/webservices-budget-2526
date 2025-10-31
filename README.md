@@ -439,3 +439,11 @@ UPDATE src/user/user.module.ts (170 bytes)
 ### Foutafhandeling
 
 - exceptionfilter met custom message
+
+### Logging middleware
+
+- logging global via middleware
+
+### Oefening - Je eigen project
+
+- TODO

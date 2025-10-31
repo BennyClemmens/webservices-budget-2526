@@ -1,5 +1,5 @@
 import type { ExceptionFilter, ArgumentsHost } from '@nestjs/common';
-import { Catch, HttpException, Logger } from '@nestjs/common';
+import { Catch, HttpException } from '@nestjs/common';
 import type { Response } from 'express';
 
 interface HttpExceptionResponse {
@@ -44,10 +44,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
         responseBody.details = exceptionResponse.details;
       }
     }
-
-    new Logger('HttpExceptionFilter').error(
-      `HTTP Exception: ${JSON.stringify(responseBody)}`,
-    );
 
     response.status(status).json(responseBody);
   }
