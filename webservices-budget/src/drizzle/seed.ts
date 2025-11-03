@@ -15,6 +15,7 @@ const db = drizzle(connection, {
 async function resetDatabase() {
   console.log('🗑️ Resetting database...');
 
+  await db.delete(schema.userFavoritePlaces);
   await db.delete(schema.transactions);
   await db.delete(schema.places);
   await db.delete(schema.users);

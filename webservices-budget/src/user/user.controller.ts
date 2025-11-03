@@ -10,7 +10,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { PlaceService } from '../place/place.service';
-import { PlaceResponseDto } from '../place/place.dto';
+import { PlaceListResponseDto } from '../place/place.dto';
 import {
   CreateUserRequestDto,
   UpdateUserRequestDto,
@@ -59,7 +59,7 @@ export class UserController {
   @Get('/:id/favoriteplaces')
   async getFavoritePlaces(
     @Param('id') id: number,
-  ): Promise<PlaceResponseDto[]> {
+  ): Promise<PlaceListResponseDto> {
     return await this.placeService.getFavoritePlacesByUserId(id);
   }
 }

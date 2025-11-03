@@ -4,7 +4,6 @@ import {
   UpdatePlaceRequestDto,
   PlaceListResponseDto,
   PlaceDetailResponseDto,
-  PlaceResponseDto,
 } from './place.dto';
 import {
   type DatabaseProvider,
@@ -74,11 +73,13 @@ export class PlaceService {
     }
   }
 
-  async getFavoritePlacesByUserId(userId: number): Promise<PlaceResponseDto[]> {
+  async getFavoritePlacesByUserId(
+    userId: number,
+  ): Promise<PlaceListResponseDto> {
     const favoritePlaces = await this.db.query.userFavoritePlaces.findMany({
       where: eq(userFavoritePlaces.userId, userId),
       with: { place: true },
     });
-    return favoritePlaces.map((fav) => fav.place);
+    return { items: favoritePlaces.map((fav) => fav.place) };
   }
 }
