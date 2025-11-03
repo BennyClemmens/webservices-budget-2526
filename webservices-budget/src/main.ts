@@ -4,24 +4,35 @@ import {
   ValidationPipe,
   BadRequestException,
   ValidationError,
-  Logger,
+  //  Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ServerConfig, CorsConfig, LogConfig } from './config/configuration';
-import CustomLogger from './core/CustomLogger';
+import { ServerConfig, CorsConfig } from './config/configuration';
 import { HttpExceptionFilter } from './lib/http-exception.filter';
+import { createAppLogger } from './core/logger.helper';
+import CustomLogger from './core/CustomLogger';
+
+// --- ✅ One logger for the entire lifecycle
+const appLogger: CustomLogger = createAppLogger();
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: appLogger,
+  });
+
   const config = app.get(ConfigService<ServerConfig>);
   const port = config.get<number>('port')!;
   const cors = config.get<CorsConfig>('cors')!;
   const { origin, maxAge } = cors;
-  const log = config.get<LogConfig>('log')!;
-  const { levels } = log;
+  //const log = config.get<LogConfig>('log')!;
+  //const { levels } = log;
+
+  //const customLogger = app.get(CustomLogger);
+  appLogger.debug(`calling app.setGlobalPrefix('api');`, 'Bootstrap');
 
   app.setGlobalPrefix('api');
 
+  appLogger.debug(`calling app.useGlobalPipes(...);`, 'Bootstrap');
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -44,14 +55,20 @@ async function bootstrap() {
     }),
   );
 
+  appLogger.debug(
+    `calling app.useGlobalFilters(new HttpExceptionFilter());`,
+    'Bootstrap',
+  );
   app.useGlobalFilters(new HttpExceptionFilter());
 
-  app.useLogger(
-    new CustomLogger({
-      logLevels: levels,
-    }),
-  );
+  // appLogger.debug(`calling app.useLogger(...);`, 'Bootstrap');
+  // app.useLogger(
+  //   new CustomLogger({
+  //     logLevels: levels,
+  //   }),
+  // );
 
+  appLogger.debug(`calling app.enableCors(...);`, 'Bootstrap');
   app.enableCors({
     origin: origin,
     maxAge: maxAge,
@@ -60,16 +77,19 @@ async function bootstrap() {
     optionsSuccessStatus: 204,
   });
 
-  await app.listen(port);
+  await app.listen(port, () => {
+    //const url = await app.getUrl();
+    appLogger.log(`Application is running on port: ${port}`, 'Bootstrap');
+  });
 
-  const logger = new Logger('Bootstrap');
-  const url = await app.getUrl();
-  logger.log(`Application is running on: ${url}`);
+  //const logger = new Logger('Bootstrap');
+  // const url = await app.getUrl();
+  // appLogger.log(`Application is running on: ${url}`);
 }
 
 bootstrap().catch((err) => {
-  const logger = new Logger('Bootstrap');
-  logger.error(
+  //const logger = new Logger('Bootstrap');
+  appLogger.error(
     'Failed to start application',
     err instanceof Error ? err.stack : String(err),
   );

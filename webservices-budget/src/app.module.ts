@@ -9,6 +9,7 @@ import { TransactionModule } from './transaction/transaction.module';
 import { UserModule } from './user/user.module';
 import configuration from './config/configuration';
 import { LoggerMiddleware } from './lib/logger.middleware';
+import CustomLogger from './core/CustomLogger';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { LoggerMiddleware } from './lib/logger.middleware';
     UserModule,
   ],
   controllers: [AppController, HealthController],
-  providers: [AppService],
+  providers: [AppService, CustomLogger],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

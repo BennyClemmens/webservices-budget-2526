@@ -1,27 +1,45 @@
-import type { LoggerService } from '@nestjs/common';
-import { ConsoleLogger } from '@nestjs/common';
+// import { ConsoleLogger, Injectable, LoggerService } from '@nestjs/common';
+import { ConsoleLogger, LogLevel, LoggerService } from '@nestjs/common';
 
+interface CustomLoggerOptions {
+  logLevels?: LogLevel[];
+  context?: string;
+}
+// @Injectable()
 export default class CustomLogger
   extends ConsoleLogger
   implements LoggerService
 {
-  log(message: string) {
-    super.log('📢 ' + message);
+  constructor(options?: CustomLoggerOptions) {
+    super(options?.context ?? 'App', {
+      logLevels: options?.logLevels ?? [
+        'debug',
+        'error',
+        'fatal',
+        'log',
+        'verbose',
+        'warn',
+      ],
+    });
   }
 
-  error(message: string, trace: string) {
-    super.error('❌  ' + message, trace);
+  log(message: any, context?: string) {
+    super.log(`📢 ${message}`, context);
   }
 
-  warn(message: string) {
-    super.warn('⚠️  ' + message);
+  error(message: any, trace?: string, context?: string) {
+    super.error(`❌ ${message}`, trace, context);
   }
 
-  debug(message: string) {
-    super.debug('🐞 ' + message);
+  warn(message: any, context?: string) {
+    super.warn(`⚠️ ${message}`, context);
   }
 
-  verbose(message: string) {
-    super.verbose('📖 ' + message);
+  debug(message: any, context?: string) {
+    super.debug(`🐞 ${message}`, context);
+  }
+
+  verbose(message: any, context?: string) {
+    super.verbose(`📖 ${message}`, context);
   }
 }

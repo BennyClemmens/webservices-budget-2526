@@ -436,6 +436,7 @@ UPDATE src/user/user.module.ts (170 bytes)
 - CustomLogger.ts in core map
 - geïmporteerd in main.ts
 - via config voor verschillende levels
+- via klasse op voorhand aanmaken ...
 
 ### Foutafhandeling
 
