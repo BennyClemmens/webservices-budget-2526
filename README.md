@@ -405,6 +405,7 @@ UPDATE src/user/user.module.ts (170 bytes)
 
 - `ParseIntPipe` gebruikt in een controller
 - genereert 400 ipv 500 status code by foutief input type
+- overal toegevoegd (en niet weggedaan zoals eerder vermeld in cursus)
 
 ### ValidationPipe
 

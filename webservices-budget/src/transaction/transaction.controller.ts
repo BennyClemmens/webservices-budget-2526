@@ -8,6 +8,7 @@ import {
   Param,
   Post,
   Put,
+  ParseIntPipe,
 } from '@nestjs/common';
 import {
   CreateTransactionRequestDto,
@@ -35,14 +36,14 @@ export class TransactionController {
 
   @Get(':id')
   async getTransactionById(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
   ): Promise<TransactionResponseDto> {
     return this.transactionService.getById(id);
   }
 
   @Put(':id')
   async updateTransaction(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateTransactionDto: UpdateTransactionRequestDto,
   ): Promise<TransactionResponseDto> {
     return this.transactionService.updateById(id, updateTransactionDto);
@@ -50,7 +51,9 @@ export class TransactionController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async deleteTransaction(@Param('id') id: number): Promise<void> {
+  async deleteTransaction(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<void> {
     return this.transactionService.deleteById(id);
   }
 }

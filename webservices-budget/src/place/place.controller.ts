@@ -8,6 +8,7 @@ import {
   Param,
   Post,
   Put,
+  ParseIntPipe,
 } from '@nestjs/common';
 import {
   CreatePlaceRequestDto,
@@ -31,7 +32,9 @@ export class PlaceController {
   }
 
   @Get(':id')
-  async getPlaceById(@Param('id') id: number): Promise<PlaceDetailResponseDto> {
+  async getPlaceById(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<PlaceDetailResponseDto> {
     return this.placeService.getById(id);
   }
 
@@ -45,7 +48,7 @@ export class PlaceController {
 
   @Put(':id')
   async updatePlace(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updatePlaceRequestDto: UpdatePlaceRequestDto,
   ): Promise<PlaceDetailResponseDto> {
     return this.placeService.updateById(id, updatePlaceRequestDto);
@@ -53,7 +56,7 @@ export class PlaceController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async deletePlace(@Param('id') id: number): Promise<void> {
+  async deletePlace(@Param('id', ParseIntPipe) id: number): Promise<void> {
     await this.placeService.deleteById(id); // await redundant...
   }
 }
