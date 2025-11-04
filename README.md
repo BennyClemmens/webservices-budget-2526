@@ -442,6 +442,11 @@ UPDATE src/user/user.module.ts (170 bytes)
 
 - exceptionfilter met custom message
 
+### Database fouten omzetten naar gebruiksvriendelijke HTTP exceptions
+
+- `drizzle-query-error.filter.ts`
+- filter toegevoegd in `main.ts`
+
 ### Logging middleware
 
 - logging global via middleware

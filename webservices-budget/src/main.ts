@@ -4,15 +4,14 @@ import {
   ValidationPipe,
   BadRequestException,
   ValidationError,
-  //  Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ServerConfig, CorsConfig } from './config/configuration';
 import { HttpExceptionFilter } from './lib/http-exception.filter';
+import { DrizzleQueryErrorFilter } from './drizzle/drizzle-query-error.filter';
 import { createAppLogger } from './core/logger.helper';
 import CustomLogger from './core/CustomLogger';
 
-// --- ✅ One logger for the entire lifecycle
 const appLogger: CustomLogger = createAppLogger();
 
 async function bootstrap() {
@@ -24,10 +23,7 @@ async function bootstrap() {
   const port = config.get<number>('port')!;
   const cors = config.get<CorsConfig>('cors')!;
   const { origin, maxAge } = cors;
-  //const log = config.get<LogConfig>('log')!;
-  //const { levels } = log;
 
-  //const customLogger = app.get(CustomLogger);
   appLogger.debug(`calling app.setGlobalPrefix('api');`, 'Bootstrap');
 
   app.setGlobalPrefix('api');
@@ -60,13 +56,7 @@ async function bootstrap() {
     'Bootstrap',
   );
   app.useGlobalFilters(new HttpExceptionFilter());
-
-  // appLogger.debug(`calling app.useLogger(...);`, 'Bootstrap');
-  // app.useLogger(
-  //   new CustomLogger({
-  //     logLevels: levels,
-  //   }),
-  // );
+  app.useGlobalFilters(new DrizzleQueryErrorFilter());
 
   appLogger.debug(`calling app.enableCors(...);`, 'Bootstrap');
   app.enableCors({
@@ -78,17 +68,11 @@ async function bootstrap() {
   });
 
   await app.listen(port, () => {
-    //const url = await app.getUrl();
     appLogger.log(`Application is running on port: ${port}`, 'Bootstrap');
   });
-
-  //const logger = new Logger('Bootstrap');
-  // const url = await app.getUrl();
-  // appLogger.log(`Application is running on: ${url}`);
 }
 
 bootstrap().catch((err) => {
-  //const logger = new Logger('Bootstrap');
   appLogger.error(
     'Failed to start application',
     err instanceof Error ? err.stack : String(err),
