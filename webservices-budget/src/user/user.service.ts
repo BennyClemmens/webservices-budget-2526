@@ -3,8 +3,9 @@ import {
   CreateUserRequestDto,
   UpdateUserRequestDto,
   UserListResponseDto,
-  UserResponseDto,
+  PublicUserResponseDto,
 } from './user.dto';
+import { plainToInstance } from 'class-transformer';
 import {
   type DatabaseProvider,
   InjectDrizzle,
@@ -20,11 +21,16 @@ export class UserService {
   ) {}
 
   async getAll(): Promise<UserListResponseDto> {
-    const items = await this.db.query.users.findMany();
+    const usersList = await this.db.query.users.findMany();
+    const items = usersList.map((user) =>
+      plainToInstance(PublicUserResponseDto, user, {
+        excludeExtraneousValues: true,
+      }),
+    );
     return { items };
   }
 
-  async getById(id: number): Promise<UserResponseDto> {
+  async getById(id: number): Promise<PublicUserResponseDto> {
     const user = await this.db.query.users.findFirst({
       where: eq(users.id, id),
     });
@@ -33,10 +39,12 @@ export class UserService {
       throw new NotFoundException('No user with this id exists');
     }
 
-    return user;
+    return plainToInstance(PublicUserResponseDto, user, {
+      excludeExtraneousValues: true,
+    });
   }
 
-  async create(dto: CreateUserRequestDto): Promise<UserResponseDto> {
+  async create(dto: CreateUserRequestDto): Promise<PublicUserResponseDto> {
     const [newUser] = await this.db.insert(users).values(dto).$returningId();
     return this.getById(newUser.id);
   }
@@ -52,8 +60,15 @@ export class UserService {
   async updateById(
     id: number,
     changes: UpdateUserRequestDto,
-  ): Promise<UserResponseDto> {
-    await this.db.update(users).set(changes).where(eq(users.id, id));
+  ): Promise<PublicUserResponseDto> {
+    const [result] = await this.db
+      .update(users)
+      .set(changes)
+      .where(eq(users.id, id));
+
+    if (result.affectedRows === 0) {
+      throw new NotFoundException('No user with this id exists');
+    }
 
     return this.getById(id);
   }

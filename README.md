@@ -566,7 +566,7 @@ Reading config file 'D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices
 
 result: errors in seed.ts en user.service.ts
 
-## Seed uitbreiden
+### Seed uitbreiden
 
 - argon 2 & approve-builds
 
@@ -635,3 +635,9 @@ PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm db:s
 ```
 
 result: only an error in user.service.ts (dto), welke we blijkbaar voorlopig negeren, maar ik toch even temp heb opgelost in de dto om toch de server te kunnen runnen
+
+### Publieke user data
+
+- UserResponseDto => PublicUserResponseDto
+- ook in alle services/controllers aangepast
+- plainToInstance om object om te vormen voor return

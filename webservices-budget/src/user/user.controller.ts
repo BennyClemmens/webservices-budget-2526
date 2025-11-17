@@ -16,7 +16,7 @@ import {
   CreateUserRequestDto,
   UpdateUserRequestDto,
   UserListResponseDto,
-  UserResponseDto,
+  PublicUserResponseDto,
 } from './user.dto';
 import { UserService } from './user.service';
 @Controller('users')
@@ -34,14 +34,14 @@ export class UserController {
   @Get(':id')
   async getUserById(
     @Param('id', ParseIntPipe) id: number,
-  ): Promise<UserResponseDto> {
+  ): Promise<PublicUserResponseDto> {
     return this.userService.getById(id);
   }
 
   @Post()
   async createUser(
     @Body() dto: CreateUserRequestDto,
-  ): Promise<UserResponseDto> {
+  ): Promise<PublicUserResponseDto> {
     return this.userService.create(dto);
   }
 
@@ -49,7 +49,7 @@ export class UserController {
   async updateUserById(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateUserRequestDto,
-  ): Promise<UserResponseDto> {
+  ): Promise<PublicUserResponseDto> {
     return this.userService.updateById(id, dto);
   }
 
