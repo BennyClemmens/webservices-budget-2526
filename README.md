@@ -454,3 +454,184 @@ UPDATE src/user/user.module.ts (170 bytes)
 ### Oefening - Je eigen project
 
 - TODO
+
+## 7. Authenticatie en autorisatie
+
+### User uitbreiden
+
+- drizzle/schema.ts extended met email, hash, roles
+- index op email
+- migratie aangemaakt en uitgevoerd
+
+```bash
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm db:generate
+
+> webservices-budget@0.0.1 db:generate D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget
+> drizzle-kit generate
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\drizzle.config.ts'
+Reading schema files:
+D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\src\drizzle\schema.ts
+
+4 tables
+places 3 columns 1 indexes 0 fks
+transactions 5 columns 0 indexes 2 fks
+user_favorite_places 2 columns 0 indexes 2 fks
+users 5 columns 1 indexes 0 fks
+
+[✓] Your SQL migration file ➜ migrations\0002_clumsy_kang.sql 🚀
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm db:migrate
+
+> webservices-budget@0.0.1 db:migrate D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget
+> drizzle-kit migrate
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\drizzle.config.ts'
+[⣷] applying migrations...DrizzleQueryError: Failed query:
+ALTER TABLE `users` ADD CONSTRAINT `idx_user_email_unique` UNIQUE(`email`);
+params:
+    at MySql2PreparedQuery.queryWithCache (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\drizzle-orm@0.44.6_mysql2@3.15.2\node_modules\src\mysql-core\session.ts:79:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySql2PreparedQuery.execute (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\drizzle-orm@0.44.6_mysql2@3.15.2\node_modules\src\mysql2\session.ts:100:16)
+    at async <anonymous> (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\drizzle-orm@0.44.6_mysql2@3.15.2\node_modules\src\mysql-core\dialect.ts:82:7)
+    at async MySql2Session.transaction (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\drizzle-orm@0.44.6_mysql2@3.15.2\node_modules\src\mysql2\session.ts:311:19)
+    at async MySqlDialect.migrate (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\drizzle-orm@0.44.6_mysql2@3.15.2\node_modules\src\mysql-core\dialect.ts:75:3)
+    at async migrate (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\drizzle-orm@0.44.6_mysql2@3.15.2\node_modules\src\mysql2\migrator.ts:10:2) {
+  query: '\n' +
+    'ALTER TABLE `users` ADD CONSTRAINT `idx_user_email_unique` UNIQUE(`email`);',
+  params: [],
+  cause: Error: Duplicate entry '' for key 'users.idx_user_email_unique'
+      at PromiseConnection.query (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\mysql2@3.15.2\node_modules\mysql2\lib\promise\connection.js:29:22)
+      at <anonymous> (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\drizzle-orm@0.44.6_mysql2@3.15.2\node_modules\src\mysql2\session.ts:101:25)
+      at MySql2PreparedQuery.queryWithCache (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\drizzle-orm@0.44.6_mysql2@3.15.2\node_modules\src\mysql-core\session.ts:77:18)
+      at MySql2PreparedQuery.execute (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\drizzle-orm@0.44.6_mysql2@3.15.2\node_modules\src\mysql2\session.ts:100:27)
+      at MySql2Session.execute (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\drizzle-orm@0.44.6_mysql2@3.15.2\node_modules\src\mysql-core\session.ts:197:5)
+      at MySql2Transaction.execute (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\drizzle-orm@0.44.6_mysql2@3.15.2\node_modules\src\mysql-core\db.ts:477:23)
+      at <anonymous> (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\drizzle-orm@0.44.6_mysql2@3.15.2\node_modules\src\mysql-core\dialect.ts:82:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async MySql2Session.transaction (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\drizzle-orm@0.44.6_mysql2@3.15.2\node_modules\src\mysql2\session.ts:311:19)
+      at async MySqlDialect.migrate (D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\node_modules\.pnpm\drizzle-orm@0.44.6_mysql2@3.15.2\node_modules\src\mysql-core\dialect.ts:75:3) {
+    code: 'ER_DUP_ENTRY',
+    errno: 1062,
+    sql: '\n' +
+      'ALTER TABLE `users` ADD CONSTRAINT `idx_user_email_unique` UNIQUE(`email`);',
+    sqlState: '23000',
+    sqlMessage: "Duplicate entry '' for key 'users.idx_user_email_unique'"
+  }
+}
+ ELIFECYCLE  Command failed with exit code 1.
+```
+
+Oplossing: docker volume ff deleten
+
+```bash
+benny@FLAB2025:/mnt/d/DATA/GIT/WEBSERVICES/webservices-budget-2526/webservices-budget$ docker volume rm webservices-budget_db_data
+webservices-budget_db_data
+benny@FLAB2025:/mnt/d/DATA/GIT/WEBSERVICES/webservices-budget-2526/webservices-budget$ docker compose up -d
+[+] Running 4/4
+ ✔ Network webservices-budget_backend         Created                                                                                                                                                       0.0s
+ ✔ Volume "webservices-budget_db_data"        Created                                                                                                                                                       0.0s
+ ✔ Container webservices-budget-db-1          Healthy                                                                                                                                                      10.9s
+ ✔ Container webservices-budget-phpmyadmin-1  Started
+```
+
+```powershell
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm db:generate
+
+> webservices-budget@0.0.1 db:generate D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget
+> drizzle-kit generate
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\drizzle.config.ts'
+Reading schema files:
+D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\src\drizzle\schema.ts
+
+4 tables
+places 3 columns 1 indexes 0 fks
+transactions 5 columns 0 indexes 2 fks
+user_favorite_places 2 columns 0 indexes 2 fks
+users 5 columns 1 indexes 0 fks
+
+No schema changes, nothing to migrate 😴
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm db:migrate
+
+> webservices-budget@0.0.1 db:migrate D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget
+> drizzle-kit migrate
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget\drizzle.config.ts'
+[✓] migrations applied successfully!
+```
+
+result: errors in seed.ts en user.service.ts
+
+## Seed uitbreiden
+
+- argon 2 & approve-builds
+
+```powershell
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm install argon2
+
+   ╭───────────────────────────────────────────────╮
+   │                                               │
+   │     Update available! 10.17.0 → 10.22.0.      │
+   │     Changelog: https://pnpm.io/v/10.22.0      │
+   │   To update, run: corepack use pnpm@10.22.0   │
+   │                                               │
+   ╰───────────────────────────────────────────────╯
+
+ WARN  4 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@7.2.3, inflight@1.0.6
+Packages: +6
+++++++
+Progress: resolved 773, reused 702, downloaded 6, added 6, done
+
+dependencies:
++ argon2 0.44.0
+
+╭ Warning ───────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                            │
+│   Ignored build scripts: argon2.                                                           │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.   │
+│                                                                                            │
+╰────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Done in 2.6s using pnpm v10.17.0
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm approve-builds
+√ Choose which packages to build (Press <space> to select, <a> to toggle all, <i> to invert selection) · argon2
+√ The next packages will now be built: argon2.
+Do you approve? (y/N) · true
+node_modules/.pnpm/argon2@0.44.0/node_modules/argon2: Running install script, done in 210ms
+```
+
+- seed.ts extended
+- Role enum
+- seeding
+
+```powershell
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> pnpm db:seed
+
+> webservices-budget@0.0.1 db:seed D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget
+> env-cmd tsx src/drizzle/seed.ts
+
+🌱 Starting database seeding...
+
+🗑️ Resetting database...
+✅ Database reset completed
+
+👥 Seeding users...
+✅ Users seeded successfully
+
+📍 Seeding places...
+✅ Places seeded successfully
+
+💰 Seeding transactions...
+✅ Transactions seeded successfully
+
+💰 Seeding UserFavoritePlaces...
+✅ UserFavoritePlaces seeded successfully
+
+🎉 Database seeding completed successfully!
+```
+
+result: only an error in user.service.ts (dto), welke we blijkbaar voorlopig negeren, maar ik toch even temp heb opgelost in de dto om toch de server te kunnen runnen

@@ -15,6 +15,13 @@
       "when": 1760963590467,
       "tag": "0001_loving_talos",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1763378674717,
+      "tag": "0002_clumsy_kang",
+      "breakpoints": true
     }
   ]
 }
