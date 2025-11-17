@@ -27,9 +27,21 @@ MYSQL_DATABASE=budget
 MYSQL_USER=devusr
 MYSQL_PASSWORD=devpwd
 LOG_LEVELS=["log","error","warn","debug"]
+AUTH_JWT_SECRET=eensuperveiligsecretvoorindevelopment
+AUTH_HASH_LENGTH=32
+AUTH_HASH_TIME_COST=6
+AUTH_HASH_MEMORY_COST=65536
+AUTH_JWT_EXPIRATION_INTERVAL=3600
+AUTH_JWT_AUDIENCE=budget.hogent.be
+AUTH_JWT_ISSUER=budget.hogent.be
+AUTH_MAX_DELAY=5000
 ```
 
 You can configure another PORT if this one is not convenient on your system.
 
 - `pnpm install`
+- Make sure a `.env` exists (see above)
+- Create a database with the name given in the `.env` file
+- Migrate the database: `pnpm db:migrate`
+- Seed the database: `pnpm db:seed`
 - `pnpm start:dev`

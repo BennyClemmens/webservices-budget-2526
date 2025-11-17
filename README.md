@@ -641,3 +641,14 @@ result: only an error in user.service.ts (dto), welke we blijkbaar voorlopig neg
 - UserResponseDto => PublicUserResponseDto
 - ook in alle services/controllers aangepast
 - plainToInstance om object om te vormen voor return
+
+### Configuratie voor authenticatie
+
+- configuration.ts aangepast
+- AUTH_JWT_SECRET en andere secrets in .env
+- Oefening - README eigen project aangepast (voor dev)
+
+### Rollen definiëren
+
+- reeds eerder uitgevoerd bij seeding
+- database empty functie toegevoegd

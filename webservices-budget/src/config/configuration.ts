@@ -17,6 +17,18 @@ export default (): ServerConfig => ({
       ? (JSON.parse(process.env.LOG_LEVELS) as LogLevel[])
       : (['log', 'error', 'warn'] as LogLevel[]),
   },
+  auth: {
+    hashLength: parseInt(process.env.AUTH_HASH_LENGTH || '32'),
+    timeCost: parseInt(process.env.AUTH_HASH_TIME_COST || '6'),
+    memoryCost: parseInt(process.env.AUTH_HASH_MEMORY_COST || '65536'),
+    jwt: {
+      expirationInterval:
+        Number(process.env.AUTH_JWT_EXPIRATION_INTERVAL) || 3600,
+      secret: process.env.AUTH_JWT_SECRET || '',
+      audience: process.env.AUTH_JWT_AUDIENCE || 'budget.hogent.be',
+      issuer: process.env.AUTH_JWT_ISSUER || 'budget.hogent.be',
+    },
+  },
 });
 
 export interface ServerConfig {
@@ -25,6 +37,7 @@ export interface ServerConfig {
   cors: CorsConfig;
   database: DatabaseConfig;
   log: LogConfig;
+  auth: AuthConfig;
 }
 
 export interface CorsConfig {
@@ -41,3 +54,17 @@ export interface LogConfig {
 }
 
 //type LogLevel = 'verbose' | 'debug' | 'log' | 'warn' | 'error' | 'fatal';
+
+export interface JwtConfig {
+  expirationInterval: number;
+  secret: string;
+  audience: string;
+  issuer: string;
+}
+
+export interface AuthConfig {
+  hashLength: number;
+  timeCost: number;
+  memoryCost: number;
+  jwt: JwtConfig;
+}
