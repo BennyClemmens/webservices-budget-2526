@@ -652,3 +652,14 @@ result: only an error in user.service.ts (dto), welke we blijkbaar voorlopig neg
 
 - reeds eerder uitgevoerd bij seeding
 - database empty functie toegevoegd
+
+### Authentication module en service
+
+```bash
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> nest generate module auth
+CREATE src/auth/auth.module.ts (85 bytes)
+UPDATE src/app.module.ts (1169 bytes)
+PS D:\DATA\GIT\WEBSERVICES\webservices-budget-2526\webservices-budget> nest generate service auth --no-spec
+CREATE src/auth/auth.service.ts (92 bytes)
+UPDATE src/auth/auth.module.ts (159 bytes)
+```

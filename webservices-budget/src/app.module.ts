@@ -9,6 +9,7 @@ import { TransactionModule } from './transaction/transaction.module';
 import { UserModule } from './user/user.module';
 import configuration from './config/configuration';
 import { LoggerMiddleware } from './lib/logger.middleware';
+import { AuthModule } from './auth/auth.module';
 import CustomLogger from './core/CustomLogger';
 
 @Module({
@@ -21,6 +22,7 @@ import CustomLogger from './core/CustomLogger';
     DrizzleModule,
     TransactionModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController, HealthController],
   providers: [AppService, CustomLogger],
